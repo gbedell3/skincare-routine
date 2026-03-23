@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#52734D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Your skincare routine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF8F4;
+  --warm: #F3EDE4;
+  --sage-50: #EEF3ED;
+  --sage-100: #D4E0D2;
+  --sage-200: #B0C7AC;
+  --sage-400: #7A9E74;
+  --sage-600: #52734D;
+  --sage-800: #334A30;
+  --stone-100: #E8E4DE;
+  --stone-200: #D4CFC7;
+  --stone-400: #A09889;
+  --stone-600: #6B6358;
+  --stone-800: #3D372F;
+  --blue-50: #EDF4FA;
+  --blue-100: #CCDFF0;
+  --blue-600: #2B6DA8;
+  --blue-800: #1A4268;
+  --lavender-50: #F0EDF8;
+  --lavender-100: #D9D1ED;
+  --lavender-600: #6B5B95;
+  --lavender-800: #3F3560;
+  --amber-50: #FDF5E8;
+  --amber-100: #F5E2BC;
+  --amber-600: #A07622;
+  --amber-800: #63490F;
+  --coral-50: #FCF0EC;
+  --coral-100: #F4D4C8;
+  --coral-600: #B35A3A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--stone-800);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  padding: 48px 24px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(ellipse at 50% 30%, var(--sage-50) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  color: var(--stone-800);
+  margin-bottom: 8px;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--stone-400);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+.hero .line {
+  width: 40px;
+  height: 1.5px;
+  background: var(--sage-400);
+  margin: 16px auto 0;
+  border-radius: 1px;
+}
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px 48px;
+}
+.tab-bar {
+  display: flex;
+  background: var(--warm);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.tab-btn {
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--stone-400);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab-btn.active {
+  background: #fff;
+  color: var(--stone-800);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.panel { display: none; }
+.panel.active { display: block; }
+.day-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardIn 0.4s ease forwards;
+}
+.day-card:nth-child(1) { animation-delay: 0s; }
+.day-card:nth-child(2) { animation-delay: 0.04s; }
+.day-card:nth-child(3) { animation-delay: 0.08s; }
+.day-card:nth-child(4) { animation-delay: 0.12s; }
+.day-card:nth-child(5) { animation-delay: 0.16s; }
+.day-card:nth-child(6) { animation-delay: 0.2s; }
+.day-card:nth-child(7) { animation-delay: 0.24s; }
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.day-card.today {
+  border-color: var(--sage-200);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 0 0 1.5px var(--sage-200);
+}
+.day-card.today .day-header::after {
+  content: 'today';
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--sage-600);
+  margin-left: auto;
+}
+.day-card.outdoor {
+  background: linear-gradient(135deg, #fff 60%, var(--sage-50) 100%);
+  border-color: var(--sage-100);
+}
+.day-card.travel-day {
+  background: linear-gradient(135deg, #fff 60%, var(--blue-50) 100%);
+  border-color: var(--blue-100);
+}
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.day-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--stone-800);
+}
+.day-badge {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.badge-outdoor { background: var(--sage-50); color: var(--sage-600); border: 1px solid var(--sage-100); }
+.badge-rest { background: var(--warm); color: var(--stone-400); border: 1px solid var(--stone-100); }
+.badge-travel { background: var(--blue-50); color: var(--blue-600); border: 1px solid var(--blue-100); }
+.routines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.routine-col h3 {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--stone-400);
+  margin-bottom: 10px;
+}
+.routine-col h3 .sun-icon,
+.routine-col h3 .moon-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  vertical-align: -1px;
+  border-radius: 50%;
+}
+.sun-icon {
+  background: #F5D76E;
+  box-shadow: 0 0 0 2px #FDF0C4;
+}
+.moon-icon {
+  background: var(--lavender-100);
+  box-shadow: 0 0 0 2px var(--lavender-50);
+  position: relative;
+}
+.moon-icon::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+}
+.step {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone-600);
+  line-height: 1.5;
+  padding: 4px 0;
+  position: relative;
+  padding-left: 12px;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--stone-200);
+}
+.tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.tag-sa { background: var(--sage-50); color: var(--sage-800); border: 0.5px solid var(--sage-100); }
+.tag-ret { background: var(--lavender-50); color: var(--lavender-800); border: 0.5px solid var(--lavender-100); }
+.tag-bha { background: var(--amber-50); color: var(--amber-800); border: 0.5px solid var(--amber-100); }
+.tag-spf { background: var(--blue-50); color: var(--blue-800); border: 0.5px solid var(--blue-100); }
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--stone-400);
+  font-weight: 400;
+}
+.travel-kit-note {
+  font-size: 12px;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  color: var(--stone-400);
+  text-align: center;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0,0,0,0.06);
+}
+.product-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardIn 0.4s ease forwards;
+}
+.product-card:nth-child(1) { animation-delay: 0s; }
+.product-card:nth-child(2) { animation-delay: 0.04s; }
+.product-card:nth-child(3) { animation-delay: 0.08s; }
+.product-card:nth-child(4) { animation-delay: 0.12s; }
+.product-card:nth-child(5) { animation-delay: 0.16s; }
+.product-card:nth-child(6) { animation-delay: 0.2s; }
+.product-card:nth-child(7) { animation-delay: 0.24s; }
+.product-card:nth-child(8) { animation-delay: 0.28s; }
+.product-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.icon-cleanser { background: var(--sage-50); color: var(--sage-600); }
+.icon-spf { background: var(--blue-50); color: var(--blue-600); }
+.icon-treat { background: var(--lavender-50); color: var(--lavender-600); }
+.icon-moisturize { background: var(--amber-50); color: var(--amber-600); }
+.icon-exfoliate { background: var(--coral-50); color: var(--coral-600); }
+.icon-tool { background: var(--stone-100); color: var(--stone-600); }
+.product-info { flex: 1; min-width: 0; }
+.product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--stone-800);
+  margin-bottom: 2px;
+}
+.product-brand {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--stone-400);
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.product-desc {
+  font-size: 12px;
+  color: var(--stone-400);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.product-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+.product-when {
+  font-size: 10px;
+  font-weight: 400;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--warm);
+  color: var(--stone-600);
+}
+.product-section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--stone-400);
+  margin: 24px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.product-section-label:first-child { margin-top: 0; }
+.product-new {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--sage-50);
+  color: var(--sage-600);
+  border: 0.5px solid var(--sage-100);
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.footer {
+  text-align: center;
+  padding: 24px 20px 40px;
+  font-size: 11px;
+  color: var(--stone-200);
+  letter-spacing: 0.3px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Your weekly routine</h1>
+    <p>Combination skin &middot; Ingrown prevention</p>
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="show('normal',this)">Normal week</button>
+    <button class="tab-btn" onclick="show('travel',this)">Travel weekend</button>
+    <button class="tab-btn" onclick="show('products',this)">Products</button>
+  </div>
+
+  <div id="normal" class="panel active">
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Monday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Tuesday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">Foaming cleanser</div>
+          <div class="step">Retinol serum <span class="tag tag-ret">ret</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Wednesday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Thursday</span><span class="day-badge badge-rest">rest night</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">Foaming cleanser</div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card outdoor">
+      <div class="day-header"><span class="day-name">Friday</span><span class="day-badge badge-outdoor">outdoor</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Retinol serum <span class="tag tag-ret">ret</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card outdoor">
+      <div class="day-header"><span class="day-name">Saturday</span><span class="day-badge badge-outdoor">outdoor</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card outdoor">
+      <div class="day-header"><span class="day-name">Sunday</span><span class="day-badge badge-outdoor">outdoor</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">Foaming cleanser</div>
+          <div class="step">Retinol serum <span class="tag tag-ret">ret</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend-bar">
+      <div class="legend-item"><span class="tag tag-sa">sa</span> Salicylic acid wash</div>
+      <div class="legend-item"><span class="tag tag-ret">ret</span> Retinol serum</div>
+      <div class="legend-item"><span class="tag tag-bha">bha</span> Stridex leave-on</div>
+      <div class="legend-item"><span class="tag tag-spf">spf</span> Reapply sunscreen</div>
+    </div>
+  </div>
+
+  <div id="travel" class="panel">
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Monday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Tuesday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">Foaming cleanser</div>
+          <div class="step">Retinol serum <span class="tag tag-ret">ret</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Wednesday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header"><span class="day-name">Thursday</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">Foaming cleanser + scrubber</div>
+          <div class="step">Cetaphil SPF 30</div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">Foaming cleanser</div>
+          <div class="step">Retinol serum <span class="tag tag-ret">ret</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header"><span class="day-name">Friday</span><span class="day-badge badge-travel">travel kit</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">SA cleanser only <span class="tag tag-sa">sa</span></div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+      <div class="travel-kit-note">No retinol while traveling</div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header"><span class="day-name">Saturday</span><span class="day-badge badge-travel">travel kit</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">SA cleanser only <span class="tag tag-sa">sa</span></div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">Stridex pad, beard <span class="tag tag-bha">bha</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+      <div class="travel-kit-note">No retinol while traveling</div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header"><span class="day-name">Sunday</span><span class="day-badge badge-travel">travel kit</span></div>
+      <div class="routines">
+        <div class="routine-col">
+          <h3><span class="sun-icon"></span> Morning</h3>
+          <div class="step">SA cleanser only <span class="tag tag-sa">sa</span></div>
+          <div class="step">Cetaphil SPF 30</div>
+          <div class="step">Reapply SPF every 2h <span class="tag tag-spf">spf</span></div>
+        </div>
+        <div class="routine-col">
+          <h3><span class="moon-icon"></span> Evening</h3>
+          <div class="step">SA cleanser <span class="tag tag-sa">sa</span></div>
+          <div class="step">HA lotion</div>
+        </div>
+      </div>
+      <div class="travel-kit-note">Light night before home</div>
+    </div>
+
+    <div class="legend-bar">
+      <div class="legend-item"><span class="tag tag-sa">sa</span> Salicylic acid wash</div>
+      <div class="legend-item"><span class="tag tag-ret">ret</span> Retinol serum</div>
+      <div class="legend-item"><span class="tag tag-bha">bha</span> Stridex leave-on</div>
+      <div class="legend-item"><span class="tag tag-spf">spf</span> Reapply sunscreen</div>
+    </div>
+  </div>
+  <div id="products" class="panel">
+    <div class="product-section-label">Cleansers</div>
+
+    <div class="product-card">
+      <div class="product-icon icon-cleanser">CLN</div>
+      <div class="product-info">
+        <div class="product-name">Foaming Facial Cleanser</div>
+        <div class="product-brand">CeraVe</div>
+        <div class="product-desc">Daily driver with niacinamide, ceramides &amp; hyaluronic acid. Oil control without stripping dry zones.</div>
+        <div class="product-tags"><span class="product-when">Every morning</span><span class="product-when">Non-active evenings</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon icon-exfoliate">SA</div>
+      <div class="product-info">
+        <div class="product-name">Renewing SA Cleanser</div>
+        <div class="product-brand">CeraVe</div>
+        <div class="product-desc">Salicylic acid exfoliant that cleans inside the follicle &mdash; your best chemical defense against ingrown hairs.</div>
+        <div class="product-tags"><span class="product-when">Mon / Wed / Fri / Sat evenings</span></div>
+      </div>
+    </div>
+
+    <div class="product-section-label">Treatments</div>
+
+    <div class="product-card">
+      <div class="product-icon icon-treat">RET</div>
+      <div class="product-info">
+        <div class="product-name">Resurfacing Retinol Serum</div>
+        <div class="product-brand">CeraVe</div>
+        <div class="product-desc">Accelerates cell turnover to prevent dead skin from trapping beard hairs. Apply after cleansing.</div>
+        <div class="product-tags"><span class="product-when">Tue / Thu / Fri / Sun evenings</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon icon-exfoliate">BHA</div>
+      <div class="product-info">
+        <div class="product-name">Maximum Strength Pads <span class="product-new">new</span></div>
+        <div class="product-brand">Stridex</div>
+        <div class="product-desc">2% salicylic acid leave-on pads. Swipe over beard &amp; neck area for deeper ingrown prevention than a wash-off cleanser.</div>
+        <div class="product-tags"><span class="product-when">Mon / Wed / Sat evenings</span></div>
+      </div>
+    </div>
+
+    <div class="product-section-label">Moisturizers</div>
+
+    <div class="product-card">
+      <div class="product-icon icon-moisturize">HA</div>
+      <div class="product-info">
+        <div class="product-name">Hyaluronic Acid Daily Hydrating Lotion</div>
+        <div class="product-brand">Amazon Basics</div>
+        <div class="product-desc">Lightweight nighttime moisturizer. No SPF needed in the evening, and it won't overload combination skin.</div>
+        <div class="product-tags"><span class="product-when">Every evening</span></div>
+      </div>
+    </div>
+
+    <div class="product-section-label">Sun protection</div>
+
+    <div class="product-card">
+      <div class="product-icon icon-spf">SPF</div>
+      <div class="product-info">
+        <div class="product-name">Oil Absorbing Moisturizer SPF 30</div>
+        <div class="product-brand">Cetaphil</div>
+        <div class="product-desc">Daily morning moisturizer + sunscreen in one. Matte finish works well on oily T-zone.</div>
+        <div class="product-tags"><span class="product-when">Every morning</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon icon-spf">SPF</div>
+      <div class="product-info">
+        <div class="product-name">Light As Air SPF 50 <span class="product-new">new</span></div>
+        <div class="product-brand">Banana Boat</div>
+        <div class="product-desc">Standalone sunscreen for reapplication every 2 hours on outdoor days. Best value per ounce.</div>
+        <div class="product-tags"><span class="product-when">Fri / Sat / Sun reapplication</span></div>
+      </div>
+    </div>
+
+    <div class="product-section-label">Tools</div>
+
+    <div class="product-card">
+      <div class="product-icon icon-tool">SCR</div>
+      <div class="product-info">
+        <div class="product-name">Silicone facial scrubbers</div>
+        <div class="product-desc">Gentle circular motions on beard area during morning cleanse. Lifts hairs starting to curl under. Light pressure only.</div>
+        <div class="product-tags"><span class="product-when">Every morning with cleanser</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Personalized for combination skin &middot; Updated March 2026</div>
+
+<script>
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+function rotateCards(panel) {
+  const today = DAYS[new Date().getDay()];
+  const cards = Array.from(panel.querySelectorAll('.day-card'));
+  const todayIdx = cards.findIndex(c => {
+    const name = c.querySelector('.day-name');
+    return name && name.textContent.trim() === today;
+  });
+  if (todayIdx > 0) {
+    const rotated = [...cards.slice(todayIdx), ...cards.slice(0, todayIdx)];
+    rotated.forEach(c => panel.appendChild(c));
+  }
+  cards.forEach(c => c.classList.remove('today'));
+  const nowCard = panel.querySelector('.day-card');
+  if (nowCard) {
+    const name = nowCard.querySelector('.day-name');
+    if (name && name.textContent.trim() === today) {
+      nowCard.classList.add('today');
+    }
+  }
+  panel.querySelectorAll('.day-card').forEach((c, i) => {
+    c.style.animation = 'none';
+    c.offsetHeight;
+    c.style.animation = `cardIn 0.4s ease ${i * 0.04}s forwards`;
+  });
+}
+
+function show(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const panel = document.getElementById(id);
+  panel.classList.add('active');
+  if (id !== 'products') {
+    rotateCards(panel);
+  } else {
+    panel.querySelectorAll('.product-card').forEach((c, i) => {
+      c.style.animation = 'none';
+      c.offsetHeight;
+      c.style.animation = `cardIn 0.4s ease ${i * 0.04}s forwards`;
+    });
+  }
+}
+
+document.querySelectorAll('.panel').forEach(p => rotateCards(p));
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>
