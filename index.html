@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#52734D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Your daily routine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FAF8F4;--warm:#F3EDE4;--sage-50:#EEF3ED;--sage-100:#D4E0D2;--sage-200:#B0C7AC;--sage-400:#7A9E74;--sage-600:#52734D;--sage-800:#334A30;--stone-100:#E8E4DE;--stone-200:#D4CFC7;--stone-400:#A09889;--stone-600:#6B6358;--stone-800:#3D372F;--blue-50:#EDF4FA;--blue-100:#CCDFF0;--blue-600:#2B6DA8;--blue-800:#1A4268;--lav-50:#F0EDF8;--lav-100:#D9D1ED;--lav-600:#6B5B95;--lav-800:#3F3560;--amb-50:#FDF5E8;--amb-100:#F5E2BC;--amb-600:#A07622;--amb-800:#63490F;--cor-50:#FCF0EC;--cor-100:#F4D4C8;--cor-600:#B35A3A;--cor-800:#6E3520;--teal-50:#EBF5F3;--teal-100:#C8E6DF;--teal-600:#3A8A75;--teal-800:#1F5446}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--stone-800);-webkit-font-smoothing:antialiased}
+.hero{padding:48px 24px 32px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;top:-60%;left:-20%;width:140%;height:200%;background:radial-gradient(ellipse at 50% 30%,var(--sage-50) 0%,transparent 70%);pointer-events:none;z-index:0}.hc{position:relative;z-index:1}.hero h1{font-family:'Playfair Display',serif;font-weight:400;font-size:32px;letter-spacing:-0.5px;margin-bottom:8px}.hero p{font-size:14px;color:var(--stone-400);font-weight:300;letter-spacing:.3px}.hero .ln{width:40px;height:1.5px;background:var(--sage-400);margin:16px auto 0;border-radius:1px}
+.ctr{max-width:640px;margin:0 auto;padding:0 20px 48px}.tb{display:flex;background:var(--warm);border-radius:12px;padding:4px;margin-bottom:24px}.tb button{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--stone-400);background:0;border:0;border-radius:10px;padding:10px 0;cursor:pointer;transition:all .3s}.tb button.on{background:#fff;color:var(--stone-800);box-shadow:0 1px 4px rgba(0,0,0,.06)}.pn{display:none}.pn.on{display:block}
+@keyframes ci{to{opacity:1;transform:translateY(0)}}.cd{background:#fff;border-radius:16px;padding:20px;margin-bottom:12px;border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.03);opacity:0;transform:translateY(12px);animation:ci .4s ease forwards}
+.ch{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,.05);flex-wrap:wrap}.ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:400}.bg{font-size:10px;font-weight:500;letter-spacing:.4px;padding:3px 10px;border-radius:20px}
+.bg-o{background:var(--sage-50);color:var(--sage-600);border:1px solid var(--sage-100)}.bg-r{background:var(--warm);color:var(--stone-400);border:1px solid var(--stone-100)}.bg-w{background:var(--teal-50);color:var(--teal-600);border:1px solid var(--teal-100)}.bg-g{background:var(--stone-100);color:var(--stone-600);border:1px solid var(--stone-200)}.bg-m{background:var(--lav-50);color:var(--lav-600);border:1px solid var(--lav-100)}.bg-t{background:var(--blue-50);color:var(--blue-600);border:1px solid var(--blue-100)}
+.si{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:4px;background:#F5D76E;box-shadow:0 0 0 2px #FDF0C4}
+.cg{margin-bottom:10px}.cg:last-child{margin-bottom:0}.cl{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}.cl-s{background:var(--amb-50);color:var(--amb-800)}.cl-h{background:var(--teal-50);color:var(--teal-800)}.cl-o{background:var(--blue-50);color:var(--blue-800)}.cl-b{background:var(--cor-50);color:var(--cor-800)}.cl-g{background:var(--stone-100);color:var(--stone-600)}
+.st{font-size:13px;color:var(--stone-600);line-height:1.5;padding:4px 0 4px 12px;position:relative}.st::before{content:'';position:absolute;left:0;top:11px;width:4px;height:4px;border-radius:50%;background:var(--stone-200)}.sn{font-size:12px;font-style:italic;color:var(--stone-400);padding:2px 0 2px 12px}
+.tg{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.3px;padding:2px 7px;border-radius:4px;margin-left:4px;vertical-align:middle;text-transform:uppercase}.t1{background:var(--sage-50);color:var(--sage-800);border:.5px solid var(--sage-100)}.t2{background:var(--lav-50);color:var(--lav-800);border:.5px solid var(--lav-100)}.t3{background:var(--amb-50);color:var(--amb-800);border:.5px solid var(--amb-100)}.t4{background:var(--blue-50);color:var(--blue-800);border:.5px solid var(--blue-100)}.t5{background:var(--teal-50);color:var(--teal-800);border:.5px solid var(--teal-100)}.t6{background:var(--lav-50);color:var(--lav-800);border:.5px solid var(--lav-100)}
+.dv{width:100%;height:1px;background:rgba(0,0,0,.05);margin:12px 0}.tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;color:var(--stone-400);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.tr{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;padding:10px 16px;background:var(--warm);border-radius:12px;font-size:13px;color:var(--stone-600)}.tr label{display:flex;align-items:center;gap:8px;cursor:pointer}.sw{position:relative;width:40px;height:22px;background:var(--stone-200);border-radius:11px;transition:background .2s;cursor:pointer;border:0;padding:0;display:inline-block}.sw.on{background:var(--blue-600)}.sw::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.15)}.sw.on::after{transform:translateX(18px)}
+.lb{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px;padding:12px 0;border-top:1px solid rgba(0,0,0,.05)}.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone-400)}
+.os{margin-bottom:24px}.ot{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:var(--stone-400);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,.05)}.wg{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.03);overflow:hidden;margin-bottom:12px}.wr{display:grid;border-bottom:1px solid rgba(0,0,0,.04)}.wr:last-child{border-bottom:0}.w5{grid-template-columns:56px 1fr 1fr 1fr 1fr}.w3{grid-template-columns:56px 1fr 1fr}.wc{padding:9px 8px;font-size:11px;color:var(--stone-600);display:flex;align-items:center}.wc:not(:last-child){border-right:1px solid rgba(0,0,0,.04)}.wh{background:var(--warm);font-weight:500;color:var(--stone-400)}.wd{font-weight:500;color:var(--stone-800)}.wk{color:var(--sage-600);font-weight:500}.wx{color:var(--stone-200)}.wy{background:var(--sage-50)}
+.mi{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:8px;border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.03);display:flex;align-items:center;gap:12px;font-size:13px;color:var(--stone-600)}.md{width:8px;height:8px;border-radius:50%;flex-shrink:0}.mw{font-size:11px;color:var(--stone-400);margin-left:auto;white-space:nowrap}
+.pc{background:#fff;border-radius:16px;padding:20px;margin-bottom:12px;border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.03);display:flex;gap:16px;align-items:flex-start;opacity:0;transform:translateY(12px);animation:ci .4s ease forwards}.pc.packed{opacity:.5}.pc.packed .pn2{text-decoration:line-through}.pi{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:500;letter-spacing:.3px}
+.cb{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--stone-200);background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0;margin-top:2px}.cb.ck{background:var(--sage-600);border-color:var(--sage-600)}.cb.ck::after{content:'';display:block;width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
+.pg{height:4px;background:var(--stone-100);border-radius:2px;margin-bottom:16px;overflow:hidden}.pgf{height:100%;background:var(--sage-400);border-radius:2px;transition:width .3s}.pgc{font-size:12px;color:var(--stone-400);margin-bottom:8px;text-align:center}
+.ic{background:var(--sage-50);color:var(--sage-600)}.is{background:var(--blue-50);color:var(--blue-600)}.it{background:var(--lav-50);color:var(--lav-600)}.im{background:var(--amb-50);color:var(--amb-600)}.ie{background:var(--cor-50);color:var(--cor-600)}.ix{background:var(--stone-100);color:var(--stone-600)}.ih{background:var(--teal-50);color:var(--teal-600)}.io{background:var(--blue-50);color:var(--blue-600)}.ib{background:var(--cor-50);color:var(--cor-600)}
+.pf{flex:1;min-width:0}.pn2{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;margin-bottom:2px}.pb{font-size:12px;font-weight:500;color:var(--stone-400);letter-spacing:.3px;margin-bottom:6px}.pd{font-size:12px;color:var(--stone-400);line-height:1.5;font-weight:300}.pt{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}.pw{font-size:10px;padding:3px 8px;border-radius:4px;background:var(--warm);color:var(--stone-600)}.pl{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;background:var(--sage-50);color:var(--sage-600);border:.5px solid var(--sage-100);text-decoration:none}
+.ps{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:var(--stone-400);margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,.05)}.ps:first-child{margin-top:0}.pnw{font-size:9px;font-weight:500;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--sage-50);color:var(--sage-600);border:.5px solid var(--sage-100);margin-left:8px;vertical-align:middle}.psw{font-size:9px;font-weight:500;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--amb-50);color:var(--amb-600);border:.5px solid var(--amb-100);margin-left:8px;vertical-align:middle}
+.footer{text-align:center;padding:24px 20px 40px;font-size:11px;color:var(--stone-200);letter-spacing:.3px}
+</style>
+</head>
+<body>
+<div class="hero"><div class="hc"><h1>Your daily routine</h1><p>Combination skin &middot; Curly/coily hair &middot; Ingrown prevention</p><div class="ln"></div></div></div>
+<div class="ctr">
+<div class="tb"><button class="on" onclick="stab('today',this)">Today</button><button onclick="stab('overview',this)">Overview</button><button onclick="stab('products',this)">Products</button></div>
+<div id="today" class="pn on"></div>
+<div id="overview" class="pn"></div>
+<div id="products" class="pn"></div>
+</div>
+<div class="footer">Personalized for combination skin + curly/coily hair &middot; Updated April 2026</div>
+<script>
+var D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],K=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],Mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var tv=false;
+// AUDITED SCHEDULE: SA+retinol never overlap same night. Sun=rest(groom/shave). Retinol=Tue/Thu/Fri. SA+Stridex=Mon/Wed/Sat. Morning=water rinse + Stridex beard.
+var SK={
+Mon:{p:['SA cleanser <span class="tg t1">sa</span>','Stridex pad, full face <span class="tg t3">bha</span>','Moisturizing cream']},
+Tue:{p:['Foaming cleanser','Retinol serum <span class="tg t2">ret</span>','Moisturizing cream']},
+Wed:{p:['SA cleanser <span class="tg t1">sa</span>','Stridex pad, full face <span class="tg t3">bha</span>','Moisturizing cream']},
+Thu:{p:['Foaming cleanser','Retinol serum <span class="tg t2">ret</span>','Moisturizing cream']},
+Fri:{p:['SA cleanser <span class="tg t1">sa</span>','Retinol serum <span class="tg t2">ret</span>','Moisturizing cream'],o:1},
+Sat:{p:['SA cleanser <span class="tg t1">sa</span>','Stridex pad, full face <span class="tg t3">bha</span>','Moisturizing cream'],o:1},
+Sun:{p:['Moisturizing cream'],rest:1,o:1}
+};
+var TR={a:'Water rinse',p:['SA cleanser <span class="tg t1">sa</span>','Stridex pad, full face <span class="tg t3">bha</span>','Moisturizing cream'],n:'Travel mode \u2014 no retinol'};
+function fm(d,t){var x=new Date(d.getFullYear(),d.getMonth(),1);while(x.getDay()!==t)x.setDate(x.getDate()+1);return x.getDate()===d.getDate()}
+function ss(a){var r='';for(var i=0;i<a.length;i++)r+='<div class="st">'+a[i]+'</div>';return r}
+function rT(){
+var n=new Date(),dw=n.getDay(),dk=K[dw],dn=D[dw],sk=SK[dk],isTr=tv,sp=isTr?TR.p:sk.p;
+var isW=dw===6,isG=dw===0,isO=dw>=5,isCl=isW&&fm(n,6),isTn=isG&&fm(n,0);
+var b='';
+if(isTr)b+='<span class="bg bg-t">travel</span>';
+if(isO&&!isTr)b+='<span class="bg bg-o">outdoor</span>';
+if(sk.rest)b+='<span class="bg bg-r">rest night</span>';
+if(isW)b+='<span class="bg bg-w">wash day</span>';
+if(isG)b+='<span class="bg bg-g">groom day</span>';
+if(isCl)b+='<span class="bg bg-m">clarify</span>';
+if(isTn)b+='<span class="bg bg-m">toenails</span>';
+var h='<div class="tr"><label>Home<button class="sw'+(tv?' on':'')+'" onclick="event.preventDefault();tv=!tv;rT()"></button>Travel</label></div>';
+h+='<div class="cd" style="animation-delay:0s"><div class="ch"><span class="ct">'+dn+' morning</span>'+b+'</div>';
+h+='<div class="cg"><div class="cl cl-o">Oral</div><div class="st">Brush teeth with Sensodyne Pronamel</div></div><div class="dv"></div>';
+h+='<div class="tl"><span class="si"></span> In the shower</div>';
+h+='<div class="cg"><div class="cl cl-h">Hair</div>';
+if(isCl)h+='<div class="st">Clarifying shampoo (Maui Moisture ACV) <span class="tg t6">monthly</span></div>';
+else if(isW)h+='<div class="st">Shampoo with SheaMoisture <span class="tg t5">wash</span></div>';
+else h+='<div class="st">Wet hair (no shampoo today)</div>';
+h+='<div class="st">Conditioner with SheaMoisture</div></div>';
+h+='<div class="cg"><div class="cl cl-b">Body</div><div class="st">Body wash with Dove Deep Moisture</div></div>';
+h+='<div class="cg"><div class="cl cl-s">Face (last in shower)</div>';
+if(isTr)h+='<div class="st">'+TR.a+'</div>';
+else h+='<div class="st">Water rinse (face last in shower)</div>';
+h+='</div><div class="dv"></div>';
+h+='<div class="tl"><span class="si"></span> After shower</div>';
+if(isW||isCl)h+='<div class="cg"><div class="cl cl-h">Hair</div><div class="st">Towel dry, apply Cantu Leave-In (light amount)</div></div>';
+h+='<div class="cg"><div class="cl cl-b">Body</div><div class="st">Amazon Basics Oatmeal lotion on damp skin</div><div class="st">Mitchum gel deodorant</div></div>';
+h+='<div class="cg"><div class="cl cl-s">Face</div><div class="st">Stridex pad on beard + any breakouts <span class="tg t3">bha</span></div><div class="st">Cetaphil SPF 30 moisturizer</div></div></div>';
+h+='<div class="cd" style="animation-delay:.06s"><div class="ch"><span class="ct">Midday</span></div>';
+h+='<div class="cg"><div class="cl cl-o">Oral</div><div class="st">ACT Fluoride Rinse (30+ min after morning brush)</div></div>';
+if(isO)h+='<div class="cg"><div class="cl cl-s">Face</div><div class="st">Reapply Banana Boat SPF 50 every 2h <span class="tg t4">spf</span></div></div>';
+h+='</div>';
+h+='<div class="cd" style="animation-delay:.12s"><div class="ch"><span class="ct">Evening</span>';
+if(sk.rest)h+='<span class="bg bg-r">rest night</span>';
+h+='</div>';
+h+='<div class="cg"><div class="cl cl-o">Oral</div><div class="st">Floss</div><div class="st">Brush teeth with Sensodyne Pronamel</div><div class="sn">Don\'t rinse with water \u2014 let fluoride sit</div></div><div class="dv"></div>';
+h+='<div class="cg"><div class="cl cl-s">Face</div>'+ss(sp);
+if(sk.rest&&isG)h+='<div class="sn">Rest night \u2014 no actives on freshly shaved skin</div>';
+if(isTr)h+='<div class="sn">'+TR.n+'</div>';
+h+='</div></div>';
+if(isG){h+='<div class="cd" style="animation-delay:.18s"><div class="ch"><span class="ct">Grooming</span><span class="bg bg-g">after shower</span></div><div class="cg"><div class="cl cl-g">Grooming</div><div class="st">Beard trim + line up (Philips OneBlade)</div><div class="st">Shave neck</div><div class="st">Clip fingernails (FIXBODY clippers)</div>';if(isTn)h+='<div class="st">Clip toenails <span class="tg t6">monthly</span></div>';h+='<div class="st">Trim nose hair (Panasonic ER-GN30)</div></div></div>';}
+h+='<div class="lb"><div class="li"><span class="tg t1">sa</span> SA wash</div><div class="li"><span class="tg t2">ret</span> Retinol</div><div class="li"><span class="tg t3">bha</span> Stridex</div><div class="li"><span class="tg t4">spf</span> SPF</div></div>';
+document.getElementById('today').innerHTML=h;}
+
+function rO(){
+var n=new Date(),td=n.getDay(),dm={Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6,Sun:0};
+// AUDITED: Retinol=Tue/Thu/Fri, SA=Mon/Wed/Fri/Sat, Sun=rest(groom)
+var sl={Mon:['SA cleanser','Stridex pads'],Tue:['Foaming','Retinol serum'],Wed:['SA cleanser','Stridex pads'],Thu:['Foaming','Retinol serum'],Fri:['SA cleanser','Retinol serum'],Sat:['SA cleanser','Stridex pads'],Sun:['Rest','Groom day']};
+var ks=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+var h='<div class="os"><div class="ot">Weekly skincare schedule</div><div class="wg"><div class="wr w3"><div class="wc wh"></div><div class="wc wh">Evening cleanser</div><div class="wc wh">Evening treatment</div></div>';
+for(var i=0;i<7;i++){var k=ks[i],y=dm[k]===td?' wy':'';h+='<div class="wr w3'+y+'"><div class="wc wd">'+k+'</div><div class="wc">'+sl[k][0]+'</div><div class="wc">'+sl[k][1]+'</div></div>';}
+h+='</div></div>';
+h+='<div class="os"><div class="ot">Weekly tasks</div><div class="wg"><div class="wr w5"><div class="wc wh"></div><div class="wc wh">Hair</div><div class="wc wh">Beard</div><div class="wc wh">Nails</div><div class="wc wh">Nose</div></div>';
+for(var j=0;j<7;j++){var k2=ks[j],y2=dm[k2]===td?' wy':'',hr=k2==='Sat'?'<span class="wk">Shampoo</span>':'<span class="wx">\u2014</span>',br=k2==='Sun'?'<span class="wk">Trim</span>':'<span class="wx">\u2014</span>',nr=k2==='Sun'?'<span class="wk">Clip</span>':'<span class="wx">\u2014</span>',ns=k2==='Sun'?'<span class="wk">Trim</span>':'<span class="wx">\u2014</span>';h+='<div class="wr w5'+y2+'"><div class="wc wd">'+k2+'</div><div class="wc">'+hr+'</div><div class="wc">'+br+'</div><div class="wc">'+nr+'</div><div class="wc">'+ns+'</div></div>';}
+h+='</div></div>';
+h+='<div class="os"><div class="ot">Monthly tasks</div>';
+function nf(tg){var d=new Date(n.getFullYear(),n.getMonth(),1);while(d.getDay()!==tg)d.setDate(d.getDate()+1);if(d<n){d=new Date(n.getFullYear(),n.getMonth()+1,1);while(d.getDay()!==tg)d.setDate(d.getDate()+1);}return d;}
+var nc=nf(6),nt=nf(0);
+h+='<div class="mi"><div class="md" style="background:var(--lav-600)"></div>Clarifying shampoo (Maui Moisture ACV)<span class="mw">'+Mo[nc.getMonth()]+' '+nc.getDate()+'</span></div>';
+h+='<div class="mi"><div class="md" style="background:var(--stone-400)"></div>Clip toenails<span class="mw">'+Mo[nt.getMonth()]+' '+nt.getDate()+'</span></div></div>';
+document.getElementById('overview').innerHTML=h;}
+
+var pv=false,packed={};
+function rP(){
+// AUDITED: Retinol=Tue/Thu/Fri, SA=Mon/Wed/Fri/Sat, Sun=rest
+var S=[{l:'Skincare \u2014 Cleansers',p:[{i:'ic',c:'CLN',n:'Foaming Facial Cleanser',b:'CeraVe',d:'Niacinamide, ceramides and hyaluronic acid. Evenings only \u2014 mornings are water rinse.',w:['Tue/Thu/Sun eves']},{i:'ie',c:'SA',n:'Renewing SA Cleanser',b:'CeraVe',d:'Salicylic acid exfoliant. Best defense against ingrown hairs.',w:['Mon/Wed/Fri/Sat eves'],tr:1,td:'Doubles as your only cleanser while traveling',ts:'Travel size or decant'}]},{l:'Skincare \u2014 Treatments',p:[{i:'it',c:'RET',n:'Resurfacing Retinol Serum',b:'CeraVe',d:'Accelerates cell turnover to prevent trapping beard hairs.',w:['Tue/Thu/Fri eves']},{i:'ie',c:'BHA',n:'Maximum Strength Pads',b:'Stridex',d:'2% salicylic acid leave-on pads. Full face evenings, beard + spot-treat mornings.',w:['Mon/Wed/Sat eves','Every morning (beard)'],tr:1,td:'Full face evenings, beard mornings. Flat and TSA-friendly.',ts:'Stack in a zip bag'}]},{l:'Skincare \u2014 Moisturizers + SPF',p:[{i:'im',c:'MCR',n:'Moisturizing Cream',b:'Amazon Basics',d:'Ceramides + HA in a rich cream. Seals in moisture overnight. Generous on cheeks, thin on T-zone.',w:['Every evening'],tr:1,td:'Every evening after SA cleanser.',ts:'Small tub or decant'},{i:'is',c:'SP1',n:'Oil Absorbing Moisturizer SPF 30',b:'Cetaphil',d:'Morning moisturizer + sunscreen. Matte finish.',w:['Every morning'],tr:1,td:'Every morning.',ts:'Travel size'},{i:'is',c:'SP2',n:'Light As Air SPF 50',b:'Banana Boat',d:'Outdoor day reapplication sunscreen.',w:['Fri/Sat/Sun'],tr:1,td:'Reapply every 2h outdoors.',ts:'Travel size'}]},{l:'Skincare \u2014 Tools',p:[{i:'ix',c:'SCR',n:'Silicone facial scrubbers',d:'Gentle motions on beard area with evening cleanser. 2\u20133x per week as needed.',w:['As needed']}]},{l:'Hair care',p:[{i:'ih',c:'CND',n:'Curl and Shine Conditioner',b:'SheaMoisture',d:'Rinse-out conditioner with shea butter and coconut oil.',w:['Every shower'],tr:1,td:'Every shower.',ts:'Travel size'},{i:'ih',c:'SHP',n:'Curl and Shine Shampoo',b:'SheaMoisture',d:'Sulfate-free with coconut oil, neem oil, silk protein.',w:['Saturday']},{i:'ih',c:'LVN',n:'Leave-In Conditioning Repair Cream',b:'Cantu',d:'Lightweight leave-in for coils. Apply sparingly after wash day.',w:['After wash day'],tr:1,td:'After wash day only.',ts:'Small jar'},{i:'ih',c:'CLR',n:'ACV Clarifying Shampoo',b:'Maui Moisture',d:'Sulfate-free clarifying with apple cider vinegar. Monthly reset.',w:['1st Sat/month']},{i:'ih',c:'COW',n:'Coconut CoWash',b:'As I Am',d:'Optional midweek conditioning cleanser.',w:['Optional']}]},{l:'Oral care',p:[{i:'io',c:'TPE',n:'Pronamel Plus Toothpaste',b:'Sensodyne',d:'Enamel-strengthening fluoride toothpaste.',w:['2x daily'],tr:1,td:'Morning and evening.',ts:'Travel size'},{i:'io',c:'TBR',n:'Toothbrush',d:'',w:['2x daily'],tr:1,td:'',ts:''},{i:'io',c:'FLS',n:'Floss',d:'',w:['Every evening'],tr:1,td:'Every evening.',ts:'Travel pack'},{i:'io',c:'MWH',n:'Anticavity Fluoride Rinse',b:'ACT (alcohol-free)',d:'ADA-accepted fluoride rinse. Use 30+ min after brushing.',w:['Daily midday']}]},{l:'Body care',p:[{i:'ib',c:'BWH',n:'Deep Moisture Body Wash',b:'Dove',d:'Gentle daily body wash.',w:['Every morning'],tr:1,td:'Every shower.',ts:'Travel size'},{i:'ib',c:'BLT',n:'Daily Moisturizing Oatmeal Lotion',b:'Amazon Basics',d:'Colloidal oatmeal skin protectant. Fragrance-free.',w:['After shower'],tr:1,td:'After shower.',ts:'Travel size'},{i:'ib',c:'DEO',n:'Triple Odor Defense Gel, Unscented',b:'Mitchum',d:'25% aluminum gel. Clear, no staining, washes off clean.',w:['Every morning'],tr:1,td:'Every morning.',ts:'Full size'}]},{l:'Grooming tools',p:[{i:'ix',c:'TRM',n:'OneBlade',b:'Philips Norelco',d:'Beard trimmer and neck shave for stubble maintenance.',w:['Sunday']},{i:'ix',c:'NLC',n:'Nail Clipper Set',b:'FIXBODY',d:'Fingernail + toenail clippers.',w:['Nails weekly','Toes monthly']},{i:'ix',c:'NST',n:'ER-GN30 Nose Trimmer',b:'Panasonic',d:'Wet/dry nose trimmer.',w:['Sunday']}]}];
+var tp=0,tc=0;
+if(pv){for(var s=0;s<S.length;s++)for(var p=0;p<S[s].p.length;p++)if(S[s].p[p].tr)tp++;}
+var h='<div class="tr"><label>All products<button class="sw'+(pv?' on':'')+'" onclick="event.preventDefault();pv=!pv;rP()"></button>Travel kit</label></div>';
+if(pv){
+for(var s2=0;s2<S.length;s2++)for(var p2=0;p2<S[s2].p.length;p2++){var x2=S[s2].p[p2];if(x2.tr&&packed[x2.c])tc++;}
+h+='<div class="pgc">'+tc+' of '+tp+' packed</div><div class="pg"><div class="pgf" style="width:'+(tp?Math.round(tc/tp*100):0)+'%"></div></div>';
+}
+for(var s=0;s<S.length;s++){
+var sec=S[s],hasItems=false;
+if(pv){for(var q=0;q<sec.p.length;q++)if(sec.p[q].tr){hasItems=true;break;}if(!hasItems)continue;}
+h+='<div class="ps">'+sec.l+'</div>';
+for(var p=0;p<sec.p.length;p++){
+var x=sec.p[p];
+if(pv&&!x.tr)continue;
+var ck=packed[x.c]||false;
+var desc=pv?x.td:x.d;
+var delay=p*.04;
+h+='<div class="pc'+(pv&&ck?' packed':'')+'" style="animation-delay:'+delay+'s">';
+if(pv)h+='<button class="cb'+(ck?' ck':'')+'" onclick="packed[\''+x.c+'\']=!packed[\''+x.c+'\'];rP()"></button>';
+else h+='<div class="pi '+x.i+'">'+x.c+'</div>';
+h+='<div class="pf"><div class="pn2">'+x.n+'</div>';
+if(x.b)h+='<div class="pb">'+x.b+'</div>';
+if(desc)h+='<div class="pd">'+desc+'</div>';
+h+='<div class="pt">';
+if(pv&&x.ts)h+='<span class="pw">'+x.ts+'</span>';
+else{for(var w=0;w<x.w.length;w++)h+='<span class="pw">'+x.w[w]+'</span>';}
+h+='</div></div></div>';
+}}
+document.getElementById('products').innerHTML=h;}
+
+function stab(id,btn){var bs=document.querySelectorAll('.tb button');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');var ps=document.querySelectorAll('.pn');for(var j=0;j<ps.length;j++)ps[j].classList.remove('on');btn.classList.add('on');document.getElementById(id).classList.add('on');if(id==='today')rT();if(id==='overview')rO();if(id==='products')rP();}
+rT();
+</script>
+</body>
+</html>
